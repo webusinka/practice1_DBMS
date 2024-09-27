@@ -7,3 +7,6 @@ main.cpp:Zone.Identifier
 pair.hpp:Zone.Identifier
 vector.hpp:Zone.Identifier
 main.exe
+hash_function.hpp:Zone.Identifier
+hash_map.hpp:Zone.Identifier
+hash_node.hpp:Zone.Identifier
