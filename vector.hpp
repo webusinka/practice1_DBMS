@@ -6,17 +6,17 @@ template <typename T>
 class Vector {
 private:
     T* data;
-    int size;
-    int capacity;
+    int size;       //размер
+    int capacity;   //количество заполненных
 
 public:
-    Vector(int initialCapacity = 10) {
+    Vector(int initialCapacity = 10) { //конструктор
         data = new T[initialCapacity];
         size = 0;
         capacity = initialCapacity;
     }
 
-    ~Vector() {
+    ~Vector() {       //деструктор
         delete[] data;
     }
 

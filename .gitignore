@@ -10,3 +10,16 @@ main.exe
 hash_function.hpp:Zone.Identifier
 hash_map.hpp:Zone.Identifier
 hash_node.hpp:Zone.Identifier
+vector.hpp
+List.hpp:Zone.Identifier
+List.hpp.gch
+Node.hpp:Zone.Identifier
+json.hpp:Zone.Identifier
+hash_node.hpp.gch
+data_base.hpp.gch
+hash_map.hpp.gch
+.vscode/settings.json
+vector.hpp
+pair.hpp
+a.out
+json.hpp

@@ -16,7 +16,7 @@ private:
 };  
 
 template<typename T1, typename T2>
-Pair<T1,T2>::Pair(){}
+Pair<T1,T2>::Pair(){}              //конструктор
 
 template<typename T1, typename T2>
 Pair<T1,T2>::Pair(const T1& first, const T2& second): 

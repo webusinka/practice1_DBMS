@@ -15,7 +15,6 @@ public:
         }    
     }
 
-
     ~Hash_map()
     {
         for (unsigned long i = 0; i < table_size; i++) {
@@ -29,20 +28,20 @@ public:
         }
     }
 
-    bool get_value(const Key &key, Value &value)
+    Value get_value(const Key &key)
     {
         unsigned long hash_value = hash(key, table_size);
         Hash_node<Key, Value>* entry = table[hash_value];
         while (entry != nullptr) {
             if (entry->get_key() == key) {
-                value = entry->get_value();
-                return true;
+                Value result(entry->get_value());
+                return result;
             }
 
             entry = entry->get_next();
         }
 
-        return false;
+        return Value();
     }
 
     void insert(const Key &key, const Value &value)
@@ -97,8 +96,6 @@ public:
             delete entry;
         }
     }
-
-private:
     Hash_node<Key, Value>* table[table_size];
     Hash_func hash;
 };

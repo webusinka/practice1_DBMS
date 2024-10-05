@@ -3,11 +3,14 @@
 #include <cstddef>
 
 template <typename Key, typename Value>
-class Hash_node
-{
+class Hash_node {
 public:
-    Hash_node(const Hash_node &) = delete;
-    Hash_node & operator=(const Hash_node &) = delete;
+    ~Hash_node(){};
+    Hash_node() = default;
+    
+     //конструктор по умолчанию
+           //конструктор копирования
+    Hash_node & operator=(const Hash_node &) = delete; //оператор присваивания запрещен
     Hash_node(const Key &key, const Value &value) :
         _key(key), _value(value), _next(nullptr){}
 
@@ -37,7 +40,6 @@ public:
         _next = next;
     }
 
-private:
     Key _key;
     Value _value;
     Hash_node* _next;
