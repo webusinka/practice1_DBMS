@@ -20,7 +20,7 @@ class Table{
     Hash_map<std::string, LinkedList<std::string>, 1000> table; //хэш таблица - ключ, названия колонок, количество колонок
     
     //загрузка данных
-    void load_data(Array<LinkedList<std::string>*> rows, int size);
+    void load_data(Array<LinkedList<std::string>*>& rows, int size);
     //удаление строки через primary_key
     void delete_row(std::string primary_key);
     //добавление строчки типа лист

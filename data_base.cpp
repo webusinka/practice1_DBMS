@@ -2,7 +2,7 @@
 #include "Array.hpp"
 #include <fstream>
 
-void Table::load_data (Array<LinkedList<std::string>*> rows, int size) {
+void Table::load_data (Array<LinkedList<std::string>*>& rows, int size) {
     int i;
     for (i = 0; i < size; i++) {
         table.insert(std::to_string(i), *rows[i]);         //смещение указателя на размер типа указателя и разыменование

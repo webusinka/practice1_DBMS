@@ -23,12 +23,14 @@ int main(){
 
     Array<LinkedList<std::string>*> rows; //массив указателей типа лист
     rows[0] = &row1; //первый элемент массива это адрес на первый элемент списка row1
+    std::cout << rows[0] << std::endl; 
     rows[1] = &row2;
+    std::cout << rows[1] << std::endl;
     rows[2] = &row2;
+    std::cout << rows[2] << std::endl;
+
+
     t1.load_data(rows, 3); //формирование хэш-тбалицы
-
-
-    
 
     //Hash_map<std::string, LinkedList<std::string>, 1> table_test;
     //table_test.insert("1", *(rows[0]));
