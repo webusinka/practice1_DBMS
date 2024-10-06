@@ -28,20 +28,16 @@ public:
         }
     }
 
-    Value get_value(const Key &key)
-    {
+    Value get_value(const Key &key) {
         unsigned long hash_value = hash(key, table_size);
         Hash_node<Key, Value>* entry = table[hash_value];
+
         while (entry != nullptr) {
             if (entry->get_key() == key) {
-                Value result(entry->get_value());
-                return result;
+                return entry->get_value();
             }
-
             entry = entry->get_next();
         }
-
-        return Value();
     }
 
     void insert(const Key &key, const Value &value)
@@ -50,9 +46,12 @@ public:
         Hash_node<Key, Value> *prev = nullptr;
         Hash_node<Key, Value> *entry = table[hash_value];
 
-        while (entry != nullptr && entry->get_key() != key) {
+        while (entry != nullptr) {
+            if(entry->get_key() != key){
+                continue;
+            }
             prev = entry;
-            entry = entry->get_next();
+            entry = entry->get_next();  
         }
 
         if (entry == nullptr) {
@@ -64,10 +63,6 @@ public:
             } else {
                 prev->set_next(entry);
             }
-
-        } else {
-            
-            entry->set_value(value);
         }
     }
 

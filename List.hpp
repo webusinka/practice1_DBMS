@@ -4,20 +4,24 @@
 #include "Node.hpp"
 
 template <typename Data>
-class LinkedList{
+class LinkedList {
     public:
         Node<Data>* head;
         Node<Data>* tail;
 
-        LinkedList() : head(nullptr), tail(nullptr) {};
+        LinkedList() : head(nullptr), tail(nullptr) {}
         LinkedList(const LinkedList& other){
-            
-            Node<Data>* others_node = other.head;
-            this->head = new Node<Data>(others_node->data); 
-            others_node = others_node->next;
-            while(others_node != nullptr) {
-                this->push_back(others_node->data);
-                others_node = others_node->next;    
+            if (other.head == nullptr && other.tail == nullptr) {
+                this->head = nullptr;
+                this->tail = nullptr;
+            } else {
+                Node<Data>* others_node = other.head;
+                this->head = new Node<Data>(others_node->data); 
+                others_node = others_node->next;
+                while(others_node != nullptr) {
+                    this->push_back(others_node->data);
+                    others_node = others_node->next;    
+                }
             }   
         }
         
