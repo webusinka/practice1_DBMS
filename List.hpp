@@ -48,17 +48,6 @@ class LinkedList{
             return current_index;          
 
         }
-        void push_front(const Data& value) {
-            Node<Data>* newNode = new Node<Data>(value, nullptr, this->head);
-            if (this->head != nullptr) {
-                newNode->next = head;
-                this->head = newNode;
-            }
-            if (this->tail == nullptr) {
-                this->tail = newNode;
-                this->head = newNode;
-            }
-        }
         void push_back(const Data& value) {
             Node<Data>* newNode = new Node<Data>(value, nullptr);
             if (this->tail != nullptr) {

@@ -23,3 +23,6 @@ vector.hpp
 pair.hpp
 a.out
 json.hpp
+Array.hpp:Zone.Identifier
+Array.hpp.gch
+pk_sequence.txt

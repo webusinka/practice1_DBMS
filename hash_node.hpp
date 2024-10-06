@@ -8,12 +8,9 @@ public:
     ~Hash_node(){};
     Hash_node() = default;
     
-     //конструктор по умолчанию
-           //конструктор копирования
     Hash_node & operator=(const Hash_node &) = delete; //оператор присваивания запрещен
     Hash_node(const Key &key, const Value &value) :
         _key(key), _value(value), _next(nullptr){}
-
 
     Key get_key() const
     {
