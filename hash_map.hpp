@@ -38,6 +38,7 @@ public:
             }
             entry = entry->get_next();
         }
+        return Value();
     }
 
     void insert(const Key &key, const Value &value)
@@ -56,7 +57,7 @@ public:
 
         if (entry == nullptr) {
             entry = new Hash_node<Key, Value>(key, value);
-
+            capacity_size++;
             if (prev == nullptr) {
                 table[hash_value] = entry;
 
@@ -88,9 +89,11 @@ public:
                 prev->set_next(entry->get_next());
             }
 
+            capacity_size--;
             delete entry;
         }
     }
     Hash_node<Key, Value>* table[table_size];
     Hash_func hash;
+    int capacity_size = 0;
 };
