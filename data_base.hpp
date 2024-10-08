@@ -10,7 +10,7 @@ public:
     LinkedList<Table&> tables; //все таблицы с колонками
 };
 //чтение csv
-void csv_reader (Table& table);
+void csv_reader (std::string table_name, Array<LinkedList<std::string>*>& rows, int& size);
 //запись в csv
 void csv_writer (Table& table);
 

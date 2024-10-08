@@ -2,27 +2,19 @@
 #include <fstream>
 #include <sstream>
 
-void csv_reader (Table& table) {
-    std::ifstream file(table.table_name + ".csv");
+void csv_reader (std::string table_name, Array<LinkedList<std::string>*>& rows, int& size) {
+    std::ifstream file(table_name + ".csv");
     std::string line;
-    Array<LinkedList<std::string>*> rows;
-    int size_array = 0;
     while (std::getline(file, line)) {
-        if (file.eof()){
-            break;
-        }
         LinkedList<std::string>* new_row = new LinkedList<std::string>;
         std::istringstream iss(line);
         std::string value;
         while(std::getline(iss, value, ',')) {
             new_row->push_back(value);
+            std::cout << value << std::endl;
         }
         rows.push_back(new_row);
-        size_array++;
-    }
-    table.load_data(rows, size_array);
-    for(int i = 0; i < size_array; i++) {
-        delete (rows[i]);
+        size++;
     }
     file.close();
 }

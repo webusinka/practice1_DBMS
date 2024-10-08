@@ -62,7 +62,7 @@ public:
                 table[hash_value] = entry;
 
             } else {
-                prev->set_next(entry);
+                entry-> set_next(prev);
             }
         }
     }
