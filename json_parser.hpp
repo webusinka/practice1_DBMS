@@ -2,46 +2,42 @@
 
 #include <create.hpp>
 #include <iostream>
+#include "data_base.hpp"
 #include "json.hpp"
 
 using namespace nlohmann;
-using namespace std;
 
-int Json_parser(){
-    std::ifstream file("shema.json");
+void json_parser(const std::string& filePath){
+    std::ifstream file(filePath);
+    if (!file.is_open()) {
+        std::cerr << "Не удалось открыть файл: " << filePath << std::endl;
+        return;
+    }
+
     nlohmann::json json_data;
     file >> json_data;
 
-    string schema_name = json_data["name"];
+    std::string schema_name = json_data["name"];
+    Data_base schema;       //создание класса таблиц
     CreateDir(schema_name);
 
     int tuples_limit = json_data["tuples_limit"];
 
     json schema_structure = json_data["structure"];
     for (auto& [key, value] : schema_structure.items()) {
-        //cout << "test 1" << endl;
         CreateDir(schema_name + "/" + key);
-        DynamicArray<string>* tempValue = InitializeArray<string>(10, 50); //переписываем не под дин.массив
-        //cout << "test 2" << endl;
 
-        string colNames = key + "_pk"; //зачем тут _pk
+        LinkedList<std::string> column;
         for (auto columns: value) {
-            colNames += ",";
-            string temp = columns;
-            colNames += temp;
-            //cout « "test 3" « endl;
-            InsertElement (*tempValue, temp);
+            column.push_back(columns);
         }
-        //cout << "test 4" << endl；
-        CreateFile(schemaName + "/" + key, "1.csv", colNames, true);
-        CreateFile (schemaName + "/" + key, key + "lock.txt", "@", false);
-        CreateFile(schemaName + "/" + key, key + "_pk_sequence.txt", "0", false);
-        //cout << "test 5" << endl;
-        //cout << key << endl;
 
-        InsertElement<string, DynamicArray<string>*>(JSONSchema, key, tempValue);
-        //cout << *tempValue << endl;
-        //cout<< *RetrieveValue<string, DynamicArray<string>*>(JSONSchema, key) << endl;
+        Table table(key, value);
+        schema.tables.push_back(table);
+
+        CreateFile(schema_name + "/" + key, "1.csv", colNames, true);
+        CreateFile (schema_name + "/" + key, key + "lock.txt", "@", false);
+        CreateFile(schema_name + "/" + key, key + "_pk_sequence.txt", "0", false);
+
     }
-    return 0;
 }
